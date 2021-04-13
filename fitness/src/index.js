@@ -7,4 +7,3 @@ import 'bootstrap/dist/css/bootstrap.css'
 const container = document.getElementById('root');
 
 ReactDom.render(<Exercises />, container);
-                

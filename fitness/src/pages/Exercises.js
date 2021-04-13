@@ -1,24 +1,51 @@
 import React from 'react'
-import Card from '../components/Card'
+import ExercisesList from '../components/ExercisesList'
 import Welecome from '../components/Welecome'
+import Add from '../components/Add'
 
-class Excercises extends React.Component{
+class Exercises extends React.Component{
+  constructor(props){
+    super(props)
+    this.state={
+        data:[{
+          "id": 1,
+          "title" :"Amanda",
+          "description":"Yerbatera Amanda",
+          "img":"https://yerbamanda.com.ar/wp-content/uploads/2015/11/logo_yerba-mate-amanda.png",
+          "leftColor":"rgba(213,35,39,1)",
+          "rightColor": "rgba(213,35,39,0.5)"
+      },{
+          "id": 2,
+          "title" :"Desab",
+          "description":"----",
+          "img":"https://www.desab.com.ar/wp-content/uploads/2017/06/logo-enfold-png-1.png",
+          "leftColor":"#B38B68",
+          "rightColor": "#308A42"
+      },{
+          "id": 3,
+          "title" :"Callegari",
+          "description":"Quimica",
+          "img":"https://www.quimicacallegari.com.ar/img/logo.png",
+          "leftColor":"#FAD961",
+          "rightColor": "#F76B1C"
+      }]
+    }
+  }
     render(){
         return(
             <div>
                 <Welecome 
                   username='Leandro'
                 />
-                <Card
-                  title="Mi Titulo"
-                  description="esta es una descripcion mas larga para probar como salta"
-                  img="https://i.pinimg.com/originals/89/7e/f0/897ef048fcbba9909c5f3459d38d7c47.png"
-                  leftColor="#A74CF2"
-                  rightColor="#617BFB"
-                /></div>
+                <ExercisesList
+                exercises={this.state.data}
+                />
+                <Add 
+                />
+            </div>
         )
     }
 
 }
 
-export default Excercises
+export default Exercises
