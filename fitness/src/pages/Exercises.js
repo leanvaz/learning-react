@@ -2,34 +2,45 @@ import React from 'react'
 import ExercisesList from '../components/ExercisesList'
 import Welecome from '../components/Welecome'
 import AddButton from '../components/AddButton'
+import Loading from '../components/Loading'
+import FatalError from './500'
 
 class Exercises extends React.Component{
 
 	state={
-				data:[{
-					"id": 1,
-					"title" :"Amanda",
-					"description":"Yerbatera Amanda",
-					"img":"https://yerbamanda.com.ar/wp-content/uploads/2015/11/logo_yerba-mate-amanda.png",
-					"leftColor":"rgba(213,35,39,1)",
-					"rightColor": "rgba(213,35,39,0.5)"
-			},{
-					"id": 2,
-					"title" :"Desab",
-					"description":"----",
-					"img":"https://www.desab.com.ar/wp-content/uploads/2017/06/logo-enfold-png-1.png",
-					"leftColor":"#B38B68",
-					"rightColor": "#308A42"
-			},{
-					"id": 3,
-					"title" :"Callegari",
-					"description":"Quimica",
-					"img":"https://www.quimicacallegari.com.ar/img/logo.png",
-					"leftColor":"#FAD961",
-					"rightColor": "#F76B1C"
-			}]
+				data:[],
+				loading :true,
+				error: null
 		}
+		async componentDidMount(){
+			await this.fetchEcxercises()
+		}
+
+		fetchEcxercises = async () => {
+			try{
+				let res = await fetch('http://localhost:8000/api/exercises')
+				let data = await res.json()
+				
+				this.setState({
+					data,
+					loading: false
+				})
+			}catch (error){
+				this.setState({
+					loading: false,
+					error
+				})
+			}
+			
+		}
+
 		render(){
+			if(this.state.loading){
+				return <Loading />
+			}
+			if(this.state.error){
+				return <FatalError />
+			}
 				return(
 						<div>
 								<Welecome 

@@ -1,4 +1,7 @@
 import React from 'react'
+import AddButton from '../components/AddButton'
 
-const NotFound = () =><h1>NotFound</h1>
-export default NotFound
+const index = () =><AddButton 
+to ="/exercise"
+/>
+export default index

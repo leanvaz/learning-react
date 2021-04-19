@@ -1,14 +1,13 @@
 import React from 'react'
 
 class ExerciseForm extends React.Component{
-	state={}
 	handleSubmit = e =>{
 		e.preventDefault();
-		console.log(this.state)
 	}
 
 	render(){
-		const{onChange}= this.props
+		const {onChange,form} = this.props
+		//console.log(onChange)
 		return (
 			<div className="container">
 				<form onSubmit={this.handleSubmit}>
@@ -19,7 +18,7 @@ class ExerciseForm extends React.Component{
 							placeholder="title"
 							name="title"
 							onChange={onChange}
-							value={this.state.title}
+							value={form.title}
 						/>
 					</div>
 					<div className="form-group">
@@ -29,7 +28,7 @@ class ExerciseForm extends React.Component{
 							placeholder="description"
 							name="description"
 							onChange={onChange}
-							value={this.state.description}
+							value={form.description}
 						/>
 					</div>
 					<div className="form-group">
@@ -39,7 +38,7 @@ class ExerciseForm extends React.Component{
 							placeholder="img"
 							name="img"
 							onChange={onChange}
-							value={this.state.img}
+							value={form.img}
 						/>
 					</div>
 					<div className="form-row">
@@ -50,7 +49,7 @@ class ExerciseForm extends React.Component{
 								placeholder="leftColor"
 								name="leftColor"
 								onChange={onChange}
-								value={this.state.leftColor}
+								value={form.leftColor}
 							/>
 						</div>
 						<div className="col">
@@ -60,7 +59,7 @@ class ExerciseForm extends React.Component{
 								placeholder="rightColor"
 								name="rightColor"
 								onChange={onChange}
-								value={this.state.rightColor}
+								value={form.rightColor}
 							/>
 						</div>
 					</div>
