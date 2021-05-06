@@ -1,7 +1,7 @@
 import React from 'react'
-import './styles/Welecome.css'
+import './styles/Welcome.css'
 
-const Welecome = ({username}) =>(
+const Welcome = ({username}) =>(
     <div className="container">
     <div className="Fitness-User-Info">
         <h1>Hello {username}!</h1>
@@ -10,4 +10,4 @@ const Welecome = ({username}) =>(
 </div>
 )
 
-export default Welecome
+export default Welcome

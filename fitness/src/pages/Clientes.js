@@ -3,7 +3,8 @@ import Welcome from '../components/Welcome'
 import ShowList from '../components/ShowList'
 import AddButton from '../components/AddButton'
 
-const Exercises = ({data}) => (
+const Clientes = ({data}) => (
+    
     <React.Fragment>
         <Welcome 
             username="Raúl"
@@ -11,10 +12,10 @@ const Exercises = ({data}) => (
         <ShowList 
             datas={data}
         />
-        <AddButton to = {"/exercise/new"}/>
+        <AddButton to = {"/clientes/new"}/>
     </React.Fragment>
 )
 
-export default Exercises
+export default Clientes
 
 
