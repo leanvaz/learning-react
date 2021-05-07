@@ -6,100 +6,94 @@ import ClientesNew from './ClientesNew'
 import url from '../config'
 import randomColor from "randomcolor";
 
-const ClientesNewContainer = ({history}) =>{
-	
-	const [filas, setFilas] = useState([]);
-	const [form,setForm] = useState({
-					nombre:'',
-					descripcion:'',
-					img:'',
-					leftColor:'',
-					rightColor:'',
-					entornos:filas
-				})
-	
+const ClientesNewContainer = ({ history }) => {
 
-	const [loading,setLoading] = useState(false)
-	const [error,setError] = useState(null)
+	const [form, setForm] = useState({
+		nombre: '',
+		descripcion: '',
+		img: '',
+		leftColor: '',
+		rightColor: '',
+		entornos: []
+	})
+
+
+	const [loading, setLoading] = useState(false)
+	const [error, setError] = useState(null)
 
 	const handleChange = e => {
-			setForm({
-				...form,
-				[e.target.name] : e.target.value
-			})
-			setLoading(false)
-			//console.log(...form)
-		}
-		
-		const handleChangeFila =  index => e => {
+		setForm({
+			...form,
+			[e.target.name]: e.target.value
+		})
+		setLoading(false)
+		//console.log(...form)
+	}
 
-			console.log('index: ' + index);
-			console.log('property name: '+ e.target.name);
-			let newArr = [...filas]; // copying the old datas array
-			console.log(...filas)
-			setFilas({
-					
-				...filas[index],
-				[e.target.name] : e.target.value
-			})
-			console.log(...filas)
-			
-			//newArr[index] = [e.target.name] :e.target.value; // replace e.target.value with whatever you want to change it to
-		
-			//setFilas(newArr); // ??
-		}
+	const handleChangeFila = ind => e => {
+
+		const newEntornos = [...form.entornos];
+		const index = newEntornos.findIndex(e => e.ind === ind)
+		newEntornos[index][e.target.name] = e.target.value
+		setForm({
+			...form,
+			entornos: newEntornos
+		})
+	}
 	const handleAddEntorno = () => {
-		const newFilas = [...filas];
-		newFilas.push({
-			ind:filas.length,
-			asp:0,
-			ambiente:'',
-			entorno:'',
-			ip:'',
-			puerto:'',
-			usrAdmin:'',
-			pswAdmin:'',
-			version:''
+		const newEntornos = [...form.entornos];
+		newEntornos.push({
+			ind: form.entornos.length,
+			asp: 0,
+			ambiente: '',
+			entorno: '',
+			ip: '',
+			puerto: '',
+			usrAdmin: '',
+			pswAdmin: '',
+			version: ''
 		});
-		setFilas(newFilas);
+		setForm({
+			...form,
+			entornos: newEntornos
+		});
 		//console.log(...filas)
-		};
+	};
 
-	const handleSubmit = async e =>{
+	const handleSubmit = async e => {
 		setLoading(true)
 		e.preventDefault();
 		try {
-			let config ={
+			let config = {
 				method: 'POST',
-				headers:{
+				headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify(form)
 			}
 
-			await fetch(`${url}/exercises`,config)
+			await fetch(`${url}/clientes`, config)
 			setLoading(false)
-			history.push('/exercise')
+			history.push('/clientes')
 		} catch (error) {
 			setLoading(false)
 			setError(error)
 		}
 	}
-		if(loading){
-			return <Loading />
-		}
-		if(error){
-			return <FatalError />
-		}
-		return <ClientesNew 
-			form={form}
-			onChange={handleChange}
-			onSubmit={handleSubmit}
-			addBtn={handleAddEntorno}
-			filas={filas}
-			onChangeFila={handleChangeFila}
-		/>
+	if (loading) {
+		return <Loading />
+	}
+	if (error) {
+		return <FatalError />
+	}
+	return <ClientesNew
+		form={form}
+		onChange={handleChange}
+		onSubmit={handleSubmit}
+		addBtn={handleAddEntorno}
+		onChangeFila={handleChangeFila}
+	/>
 }
 
 export default ClientesNewContainer
