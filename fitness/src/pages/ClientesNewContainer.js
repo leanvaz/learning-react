@@ -34,7 +34,10 @@ const ClientesNewContainer = ({ history }) => {
 
 		const newEntornos = [...form.entornos];
 		const index = newEntornos.findIndex(e => e.ind === ind)
-		newEntornos[index][e.target.name] = e.target.value
+		//newEntornos[index][e.target.name] = e.target.value
+		
+		newEntornos[index][e.target.name] = (e.target.name==='asp'?!newEntornos[index]['asp']:e.target.value)   
+		
 		setForm({
 			...form,
 			entornos: newEntornos
@@ -44,7 +47,7 @@ const ClientesNewContainer = ({ history }) => {
 		const newEntornos = [...form.entornos];
 		newEntornos.push({
 			ind: form.entornos.length,
-			asp: 0,
+			asp: false,
 			ambiente: '',
 			entorno: '',
 			ip: '',
@@ -63,6 +66,7 @@ const ClientesNewContainer = ({ history }) => {
 	const handleSubmit = async e => {
 		setLoading(true)
 		e.preventDefault();
+		console.log(JSON.stringify(form))
 		try {
 			let config = {
 				method: 'POST',

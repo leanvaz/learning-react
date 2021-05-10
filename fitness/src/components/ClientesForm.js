@@ -58,12 +58,7 @@ const ClientesForm = ({ onChange, onSubmit, form, addBtn, onChangeFila }) => {
 						/>
 					</div>
 				</div>
-				<br></br>
 				<div className="form-row">
-					<button
-						type="button"
-						className="btn btn-primary float-right"
-						onClick={addBtn}>Add</button>
 					<table className='table' id='myTable'>
 						<thead>
 							<tr>
@@ -75,6 +70,11 @@ const ClientesForm = ({ onChange, onSubmit, form, addBtn, onChangeFila }) => {
 								<th>Usuario Admin</th>
 								<th>Password Admin</th>
 								<th>Version</th>
+								<th>
+					<button
+						type="button"
+						className="btn btn-primary float-right"
+						onClick={addBtn}>Add</button></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -84,7 +84,7 @@ const ClientesForm = ({ onChange, onSubmit, form, addBtn, onChangeFila }) => {
 										<td><input
 											type="checkbox"
 											name="asp"
-											value={entorno.asp}
+											checked={entorno.asp}
 											onChange={onChangeFila(entorno.ind)}
 										/></td>
 										<td><input
@@ -131,7 +131,7 @@ const ClientesForm = ({ onChange, onSubmit, form, addBtn, onChangeFila }) => {
 										<td><input
 											type="text"
 											className="form-control"
-											placeholder="Ambiente"
+											placeholder="pswAdmin"
 											name="pswAdmin"
 											value={entorno.pswAdmin}
 											onChange={onChangeFila(entorno.ind)}
