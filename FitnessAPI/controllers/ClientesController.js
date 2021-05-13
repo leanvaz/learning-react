@@ -48,15 +48,15 @@ class ClientesController {
 	}
 
 	static details(req, res){
-	var sql = "select * from entornos where idCliente = ?"
+	var sql = "select * from clientes where id = ?"
 
-	db.get(sql, req.params.id, (err, entorno) => {
+	db.get(sql, req.params.id, (err, clientes) => {
 		if (err) {
 			res.status(500).json({ 'error': err.message });
 			return;
 		}
 		res.json({
-			entorno
+			clientes
 		})
 	});
 }

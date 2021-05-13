@@ -2,6 +2,6 @@ import React from 'react'
 import AddButton from '../components/AddButton'
 
 const index = () =><AddButton 
-to ="/exercise"
+to ="/clientes"
 />
 export default index
